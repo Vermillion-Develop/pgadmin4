@@ -509,7 +509,7 @@ def utils():
     pg_help_path_pref = prefs.preference('pg_help_path')
     pg_help_path = pg_help_path_pref.get()
 
-    #начало правки////////////////////////////////////////////////////////////
+    # Dynamic documentation localization based on user preference
     from flask import has_request_context
     try:
         if has_request_context():
@@ -518,7 +518,6 @@ def utils():
                 pg_help_path = pg_help_path.replace('en_US', 'ru_RU')
     except Exception:
         pass
-    #КОНЕЦ ПРАВКИ////////////////////////////////////////////////////////
 
     # Try to fetch current libpq version from the driver
     try:
