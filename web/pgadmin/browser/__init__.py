@@ -26,6 +26,7 @@ from pgadmin.utils.constants import KEY_RING_SERVICE_NAME, \
 from flask import current_app, render_template, url_for, make_response, \
     flash, Response, request, redirect, session
 from flask_babel import gettext
+from flask_babel import get_locale
 from libgravatar import Gravatar
 from flask_security import current_user, permissions_required
 from flask_login.utils import login_url
@@ -507,6 +508,17 @@ def utils():
     prefs = Preferences.module('paths')
     pg_help_path_pref = prefs.preference('pg_help_path')
     pg_help_path = pg_help_path_pref.get()
+
+    #начало правки////////////////////////////////////////////////////////////
+    from flask import has_request_context
+    try:
+        if has_request_context():
+            user_language = str(get_locale())
+            if user_language == 'ru' and pg_help_path:
+                pg_help_path = pg_help_path.replace('en_US', 'ru_RU')
+    except Exception:
+        pass
+    #КОНЕЦ ПРАВКИ////////////////////////////////////////////////////////
 
     # Try to fetch current libpq version from the driver
     try:
