@@ -258,3 +258,6 @@ man_pages = [
     ('index', 'pgadmin4', 'pgAdmin 4 Documentation',
      ['The pgAdmin Development Team'], 1)
 ]
+# Folder path to .po files
+locale_dirs = ['locale/']  # Указывает путь к папке с вашими .po файлами
+gettext_compact = False
